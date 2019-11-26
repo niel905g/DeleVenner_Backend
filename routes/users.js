@@ -14,7 +14,7 @@ router.get('/', function (req, res, next) {
 /* POST til at oprette en bruger */
 router.post('/createuser', function (req, res, next) {
 
-  bcrypt.hash(req.body.password, 6, function (err, hash) {
+  bcrypt.hash(req.body.password + 'rPVF9uGre6aSGY', 6, function (err, hash) {
     
     MongoClient.connect(url, function (err, db) {
       if (err) throw err;
