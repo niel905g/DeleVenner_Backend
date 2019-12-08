@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const bodyParser = require('body-parser');
+/* const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 const app = express();
 
@@ -53,7 +53,7 @@ const PORT = process.env.PORT || 3002
 
 app.listen(PORT, () => {
   console.log('Server listening on port ${PORT}')
-})
+}) */
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
