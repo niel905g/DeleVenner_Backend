@@ -8,9 +8,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.post('/api/form', (req, res) => {
- // console.log(req.body)
-   nodemailer.createTestAccount((err, account) => {
-   const htmlEmail = `
+  // console.log(req.body)
+  nodemailer.createTestAccount((err, account) => {
+    const htmlEmail = `
    <h3>Kontakt detaljer</h3>
    <ul>
    <li>Name: ${req.body.name}</li>
@@ -20,35 +20,36 @@ app.post('/api/form', (req, res) => {
    <p>${reg.body.message}</p>
    `
 
-   let transporter = nodemailer.createTransport({
-     host: 'smtp.ethereal.email',
-     port: 587,
-     auth: {
-       user: 'clay8@ethereal.email',
-       pass: '1Evmypjm3NbwbCF7Pk'
-     }
-   });
+    let transporter = nodemailer.createTransport({
+      host: 'smtp.ethereal.email',
+      port: 587,
+      auth: {
+        user: 'clay8@ethereal.email',
+        pass: '1Evmypjm3NbwbCF7Pk'
+      }
+    });
 
-   let mailOptions = {
-     from: 'test@testaccount.com',
-     to: 'clay8@ethereal.email',
-     replyTo: 'test@testaccount.com',
-     subject: 'New Message',
-     text: req.body.message,
-     html: htmlEmail
-   }
+    let mailOptions = {
+      from: 'test@testaccount.com',
+      to: 'clay8@ethereal.email',
+      replyTo: 'test@testaccount.com',
+      subject: 'New Message',
+      text: req.body.message,
+      html: htmlEmail
+    }
 
-   transporter.sendMail(mailOptions, (err, info) => {
-     if (err) {
-       return console.log(err)
-     }
+    transporter.sendMail(mailOptions, (err, info) => {
+      if (err) {
+        return console.log(err)
+      }
 
-     console.log('Message sent: %s', info.message)
-     console.log('Message URL: %s', nodemailer.getTestMessageUrl(info))
-   })
- })
+      console.log('Message sent: %s', info.message)
+      console.log('Message URL: %s', nodemailer.getTestMessageUrl(info))
+    })
+  })
 })
 
+//her er fejlen port skal være 3001 men siger den er optaget...?
 const PORT = process.env.PORT || 3002
 
 app.listen(PORT, () => {
@@ -56,7 +57,7 @@ app.listen(PORT, () => {
 })
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
   res.render('index', { title: 'DeleVenner' });
 });
 
