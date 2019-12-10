@@ -2,13 +2,12 @@ var express = require('express');
 var router = express.Router();
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
-const app = express();
+//const app = express();
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
 
-app.post('/api/form', (req, res) => {
-  // console.log(req.body)
+
+router.post('/api/form', (req, res) => {
+   console.log(req.body)
   nodemailer.createTestAccount((err, account) => {
     const htmlEmail = `
    <h3>Kontakt detaljer</h3>
@@ -17,7 +16,7 @@ app.post('/api/form', (req, res) => {
    <li>Email: ${req.body.email}</li>
    </ul>
    <h3>Message</h3>
-   <p>${reg.body.message}</p>
+   <p>${req.body.message}</p>
    `
 
     let transporter = nodemailer.createTransport({
@@ -49,12 +48,6 @@ app.post('/api/form', (req, res) => {
   })
 })
 
-//her er fejlen port skal være 3001 men siger den er optaget...?
-const PORT = process.env.PORT || 3002
-
-app.listen(PORT, () => {
-  console.log('Server listening on port ${PORT}')
-})
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
